@@ -34,3 +34,6 @@ class pila:
             return True
         else:
             return False
+        
+    def ultimo(self):
+        return self.__comienzo.dar_contenido()

@@ -3,6 +3,7 @@ import numpy
 class pila:
     __pila:numpy.array
     __tope:int
+    __capacidad:int
     
     def __init__(self):
         self.__capacidad=50
