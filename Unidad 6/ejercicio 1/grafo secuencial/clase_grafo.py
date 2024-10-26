@@ -4,10 +4,12 @@ from clase_cola_secuencial import cola
 class grafo_secuencial:
     __matriz_adyacencia:np.array
     __vertices:list
+    __tiempo:int#para recorrido en profundidad. No es parte del objeto de dato
     
     def __init__(self, vertices, aristas):#Recibe una lista con los vertices y otro con las aristas 
         self.__vertices=vertices
-        self.__matriz_adyacencia=np.zeros((len(vertices),len(vertices)), dtype=object)#arreglo bidimencional tamaño V x V
+        self.__matriz_adyacencia=np.zeros((len(vertices),len(vertices)), dtype=int)#arreglo bidimencional tamaño V x V
+        self.__tiempo=0
         
         for i in aristas:#por cada arista
             #coloca 1 en el lugar ij y ji que implique 2 vertices adyacentes
@@ -55,30 +57,35 @@ class grafo_secuencial:
                 
         print(vertices_visitados)#muestra longitud de caminos mas cortos desde vertice origen hasta los demas
         
-        
-    def REPVisita(self, s,vertices_visitados, tiempo):
-        tiempo+=1
-        vertices_visitados[s]=tiempo
-        i=0
-        for u in self.__matriz_adyacencia[s]:
-            if u==1:
-                if vertices_visitados[i]==0:
-                    self.REPVisita(i, vertices_visitados, tiempo)
-            i+=1
-        
-        tiempo+=1
-        
     
-    #recorrido en profundidad
+    def REP_Visita(self, v, t_descubierto, t_finalizacion):
+        self.__tiempo += 1
+        t_descubierto[v] = self.__tiempo  # marco el vértice como descubierto con el tiempo en el que se encontro
+        print(f"Visitando nodo {v}, tiempo de descubrimiento: {self.__tiempo}")
+
+        #recorro los adyacentes de "v"
+        for u in range(len(self.__vertices)):
+            if self.__matriz_adyacencia[v][u]==1 and t_descubierto[u] == 0:
+                self.REP_Visita(u, t_descubierto, t_finalizacion)
+        
+        self.__tiempo += 1
+        t_finalizacion[v] = self.__tiempo  #marco el tiempo de finalización del vertice "v"
+        print(f"Finalizando nodo {v}, tiempo de finalización: {self.__tiempo}")
+
     def REP(self):
-        vertices_visitados=[]#para marcar los vertices visitados
-        #asigna infinito a todos los vertices
+        # inicializo tiempos de descubrimiento y finalización
+        t_descubierto= [0] * len(self.__vertices)
+        t_finalizacion = [0] * len(self.__vertices)
+        
+
+        #para cada vértice no sido visitado, ejecutar REP_visita
         for v in range(len(self.__vertices)):
-            vertices_visitados.append(0)
-        tiempo=0
-        for s in range(len(self.__vertices)):
-            if vertices_visitados[s]==0:
-                self.REPVisita(s,vertices_visitados, tiempo)
+            if t_descubierto[v] == 0:
+                self.REP_Visita(v, t_descubierto, t_finalizacion)
+        
+        print("Tiempos de descubrimiento:", t_descubierto)
+        print("Tiempos de finalización:", t_finalizacion)
+        self.__tiempo=0#reinicio el tiempo para futuros REP
         
         
     def adyacentes(self, vertice):
