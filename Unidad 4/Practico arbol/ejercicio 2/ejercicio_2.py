@@ -49,10 +49,12 @@ class arbol_2(arbol):
     #incisos c) y d) usaran las funciones heredadas de arbol
     
     #c)
-    #def artura()
+    #def altura()
     
     #d)
     def mostrar_sucesores(self, elemento):
         nodo=super().buscar(elemento)
         if nodo!=None:
             super().preorden(nodo)
+        else:
+            return print("El nodo no existe")

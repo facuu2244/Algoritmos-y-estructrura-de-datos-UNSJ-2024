@@ -36,4 +36,6 @@ if __name__ == '__main__':
 
     arbol=arbol()
     arbol.insertar_raiz(nodo_sumado)
-    arbol.mostar(arbol.dar_raiz())
+    arbol.mostar(nodo_sumado)
+    
+    #mostrar el camino desde un nodo hasta la letra deseada para recibir el codigo(

@@ -164,8 +164,4 @@ class grafo_secuencial:
         
         
     def aciclico(self):
-        band=False
-        i=0
-        while band==False or i<=len(self.__vertices):
-            if self.camino(self.__vertices[i], self.__vertices[i]):
-                pass
+        print("El grafo tiene ciclos pues es un grafo no dirigido")

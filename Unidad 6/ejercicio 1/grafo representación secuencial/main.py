@@ -6,4 +6,4 @@ if __name__ == '__main__':
     
     grafo=grafo_secuencial(vertices, aristas)
 
-    grafo.conexo()
+    grafo.aciclico()
