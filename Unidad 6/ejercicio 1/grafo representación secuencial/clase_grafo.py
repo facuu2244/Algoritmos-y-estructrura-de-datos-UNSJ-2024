@@ -76,7 +76,6 @@ class grafo_secuencial:
         # inicializo tiempos de descubrimiento y finalización
         t_descubierto= [0] * len(self.__vertices)
         t_finalizacion = [0] * len(self.__vertices)
-        
 
         #para cada vértice no sido visitado, ejecutar REP_visita
         for v in range(len(self.__vertices)):
@@ -99,13 +98,13 @@ class grafo_secuencial:
         
     #reconstruir el camino a partir del arreglo de predecesores
     def reconstruir_camino(self, camino, origen, destino):
-        resultado = []
-        actual = destino
+        resultado=[]
+        actual=destino
         
         #retrocedo desde el destino hasta el origen
-        while actual != -1:
+        while actual!=-1:
             resultado.insert(0, self.__vertices[actual])#inserto al inicio del arreglo el vertice actual
-            actual = camino[actual]
+            actual=camino[actual]
         
         if resultado[0] != self.__vertices[origen]:#si no se llega al origen, no hay un camino válido
             return print(f"No hay camino de {self.__vertices[origen]} a {self.__vertices[destino]}")
