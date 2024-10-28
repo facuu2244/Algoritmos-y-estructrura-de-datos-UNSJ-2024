@@ -153,9 +153,12 @@ class lista_encadenada:
             return "Posicion invalida"
             
     def recorrer(self):
-        aux=self.__cabeza
-        print(aux.dar_contenido())
-        
-        while aux.dar_siguiente()!=None:
-            aux=aux.dar_siguiente()
+        if self.vacia():
+            return "La lista esta vacia"
+        else:
+            aux=self.__cabeza
             print(aux.dar_contenido())
+            
+            while aux.dar_siguiente()!=None:
+                aux=aux.dar_siguiente()
+                print(aux.dar_contenido())

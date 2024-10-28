@@ -170,9 +170,12 @@ class lista_encadenada_contenido:
                 return "Elemento no encontrado"
 
     def recorrer(self):
-        aux=self.__cabeza
-        print(aux.dar_contenido())
-        
-        while aux.dar_siguiente()!=None:
-            aux=aux.dar_siguiente()
+        if self.vacia():
+            return "La lista esta vacia"
+        else:
+            aux=self.__cabeza
             print(aux.dar_contenido())
+            
+            while aux.dar_siguiente()!=None:
+                aux=aux.dar_siguiente()
+                print(aux.dar_contenido())
