@@ -20,6 +20,7 @@ class grafo_encadenada:
             
         #cargo los adyacentes
         for a in aristas:
+            #insertara numeros, que se usaran como indices de self.__vertices
             self.__arreglo[a[0]].insertar(a[1])
             self.__arreglo[a[1]].insertar(a[0])
     
@@ -93,7 +94,11 @@ class grafo_encadenada:
     
     def adyacentes(self, vertice):
         indice_origen=self.buscar_indice(vertice)
-        self.__arreglo[indice_origen].recorrer()
+        aux=self.__arreglo[indice_origen].dar_cabeza()
+        while aux!=None:
+            adyacente=aux.dar_contenido()#indice del vertice adyacente en self.__vertices
+            print(self.__vertices[adyacente])
+            aux=aux.dar_siguiente()
         
     
     #reconstruir el camino a partir del arreglo de predecesores

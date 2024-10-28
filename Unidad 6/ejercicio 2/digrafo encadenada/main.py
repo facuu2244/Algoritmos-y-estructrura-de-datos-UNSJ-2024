@@ -6,3 +6,4 @@ if __name__ == '__main__':
     
     digrafo=digrafo(vertices, aristas)
     
+    digrafo.aciclico()

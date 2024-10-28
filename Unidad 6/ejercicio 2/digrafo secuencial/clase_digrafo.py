@@ -140,20 +140,19 @@ class digrafo:
         cont=0
         for i in self.__vertices:
             visitados=self.REA(i)
-            print(visitados)
             if float("inf") in visitados:
                 cont+=1
         if cont==len(self.__vertices):
-            return print("El grafo es diconexo")#en todos los recorridos hubieron vertices sin visitar
+            return print("El grafo es disconexo")#en todos los recorridos hubieron vertices sin visitar
         elif cont==0:
             return print("El grafo es fuertemente conexo")#nunca hubieron vertices sin visitar
         else:
-            return print("El grafo es disconexo")
+            return print("El grafo simple conexo")
     
     
     def obtener_transpuesto(self):
         #crea el grafo transpuesto invirtiendo las aristas
-        transpuesto = digrafo(self.__vertices, [])
+        transpuesto = digrafo(self.__vertices, []) #matriz de 0s en consola por print() en __init__
         for i in range(len(self.__vertices)):
             for j in range(len(self.__vertices)):
                 if self.__matriz_adyacencia[i][j] == 1:
@@ -177,7 +176,7 @@ class digrafo:
 
     def es_debilmente_conexo(self):
         #crea el grafo no dirigido eliminando las direcciones de las aristas
-        no_dirigido = digrafo(self.__vertices, [])
+        no_dirigido = digrafo(self.__vertices, [])#matriz de 0s en consola por print() en __init__
         for i in range(len(self.__vertices)):
             for j in range(len(self.__vertices)):
                 if self.__matriz_adyacencia[i][j] == 1 or self.__matriz_adyacencia[j][i] == 1:
@@ -195,7 +194,7 @@ class digrafo:
         if self.fuertemente_conexo():
             print("El grafo es fuertemente conexo")
         elif self.es_debilmente_conexo():
-            print("El grafo es débilmente conexo")
+            print("El grafo es simple conexo")
         else:
             print("El grafo es disconexo")
             
