@@ -233,6 +233,44 @@ class digrafo_p:
         print("No tiene ciclos")
         
         
+    def grado_salida(self, vertice):#veo la fila del vertice
+        cont=0
+        indice=self.buscar_indice(vertice)
+        for v in range(len(self.__vertices)):
+            if self.__matriz_adyacencia[indice][v]!=float("inf"):
+                cont+=1
+
+        return cont
+    
+    
+    def grado_entrada(self, vertice):#veo la columna del vertice
+        cont=0
+        indice=self.buscar_indice(vertice)
+        for v in range(len(self.__vertices)):
+            if self.__matriz_adyacencia[v][indice]!=float("inf"):
+                cont+=1
+        
+        return cont
+    
+    
+    def nodo_fuente(self, vertice):
+        grado_salida=self.grado_salida(vertice)
+        grado_entrada=self.grado_entrada(vertice)
+        if grado_salida>0 and grado_entrada==0:
+            print("El vertice es fuente")
+        else:
+            print("El vertice no es fuente")
+    
+    
+    def nodo_pozo(self, vertice):
+        grado_salida=self.grado_salida(vertice)
+        grado_entrada=self.grado_entrada(vertice)
+        if grado_entrada>0 and grado_salida==0:
+            print("El vertice es pozo")
+        else:
+            print("El vertice no es pozo")
+        
+        
     def algoritmo_floyd(self):
         matriz_distancias = self.__matriz_adyacencia
         

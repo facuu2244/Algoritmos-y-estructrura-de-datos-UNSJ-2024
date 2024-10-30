@@ -189,3 +189,46 @@ class digrafo:
                     return
 
         print("No tiene ciclos")
+        
+        
+    def grado_salida(self, vertice): #recorro la lista del vertice
+        cont=0
+        indice=self.buscar_indice(vertice)
+        aux=self.__arreglo[indice].dar_cabeza()
+        
+        while aux!=None:
+            cont+=1
+            aux=aux.dar_siguiente()    
+    
+        return cont
+    
+    
+    def grado_entrada(self, vertice): #recorro todo el arrglo y las listas para buscar entradas
+        cont=0
+        indice=self.buscar_indice(vertice)
+        for v in self.__arreglo:
+            aux=v.dar_cabeza()
+            while aux!=None:
+                if aux.dar_contenido()==indice:
+                    cont+=1
+                aux=aux.dar_siguiente()   
+        
+        return cont
+    
+    
+    def nodo_fuente(self, vertice):
+        grado_salida=self.grado_salida(vertice)
+        grado_entrada=self.grado_entrada(vertice)
+        if grado_salida>0 and grado_entrada==0:
+            print("El vertice es fuente")
+        else:
+            print("El vertice no es fuente")
+    
+    
+    def nodo_pozo(self, vertice):
+        grado_salida=self.grado_salida(vertice)
+        grado_entrada=self.grado_entrada(vertice)
+        if grado_entrada>0 and grado_salida==0:
+            print("El vertice es pozo")
+        else:
+            print("El vertice no es pozo")
