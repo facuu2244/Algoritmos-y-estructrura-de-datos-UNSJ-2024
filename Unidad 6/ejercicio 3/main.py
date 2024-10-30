@@ -1,5 +1,5 @@
 from clase_digrafo_ponderado import digrafo_p
-#CAMBIAR CONDICIONES DE IF
+
 if __name__ == '__main__':
     #          0    1    2    3    4    5
     vertices=["A", "B", "C", "D", "E", "F"]
